@@ -19,8 +19,8 @@ public class MetricsScheduler {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("${agent.kafka-topic}")
-    private String kafkaTopic;
+    @Value("${agent.kafka-metrics-topic}")
+    private String kafkaMetricsTopic;
 
     @Scheduled(fixedDelayString = "${agent.collection-interval-ms}")
     public void collectAndSendMetrics() {
@@ -37,12 +37,12 @@ public class MetricsScheduler {
             String payload = objectMapper.writeValueAsString(metrics);
             String key = metrics.getLocalIp();
 
-            kafkaTemplate.send(kafkaTopic, key, payload)
+            kafkaTemplate.send(kafkaMetricsTopic, key, payload)
                     .whenComplete((result, ex) -> {
                         if (ex != null) {
                             log.error("Ошибка отправки метрик в Kafka: {}", ex.getMessage());
                         } else {
-                            log.info("Метрики отправлены. Агент: {}, Тема: {}", key, kafkaTopic);
+                            log.info("Метрики отправлены. Агент: {}, Тема: {}", key, kafkaMetricsTopic);
                         }
                     });
 
