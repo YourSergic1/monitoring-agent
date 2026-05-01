@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.4</version>
+        <version>3.3.5</version>
         <relativePath/>
     </parent>
 
@@ -20,10 +20,12 @@
     <properties>
         <java.version>23</java.version>
         <oshi.version>6.4.6</oshi.version>
+        <!-- Версии плагинов для совместимости с Java 23 -->
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Core (исключаем стандартный Logback) -->
+        <!-- Spring Boot Core -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -35,13 +37,13 @@
             </exclusions>
         </dependency>
 
-        <!-- Log4j2 -->
+        <!-- Log4j2 вместо Logback -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
 
-        <!-- Lombok (версия 1.18.34+ для поддержки Java 23) -->
+        <!-- Lombok (1.18.34+ обязателен для Java 23) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -55,14 +57,14 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- System Metrics (OSHI) -->
+        <!-- System Metrics -->
         <dependency>
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
             <version>${oshi.version}</version>
         </dependency>
 
-        <!-- JSON и Web -->
+        <!-- JSON + Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
@@ -75,6 +77,25 @@
 
     <build>
         <plugins>
+            <!-- 🔹 КЛЮЧЕВОЙ: Compiler Plugin с настройкой аннотаций для Lombok -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.34</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- 🔹 Spring Boot Plugin для executable JAR -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
