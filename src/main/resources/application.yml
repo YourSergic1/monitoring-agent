@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9093}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 3
+      acks: all
+      properties:
+        max.block.ms: 2000
+
+agent:
+  organization: ${ORGANIZATION:test}
+  kafka-topic: ${KAFKA_TOPIC:system-metrics}
+  collection-interval-ms: ${COLLECTION_INTERVAL_MS:180000}
