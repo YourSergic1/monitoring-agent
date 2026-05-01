@@ -7,9 +7,9 @@ import oshi.SystemInfo;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.Duration;
 import java.time.Instant;
-import java.net.URL;
 
 @UtilityClass
 @Slf4j
@@ -28,7 +28,7 @@ public class IpUtils {
     private static String cachedPublicIp;
     private static Instant cacheTimestamp;
 
-    public static String getLocalIp( SystemInfo systemInfo) {
+    public static String getLocalIp(SystemInfo systemInfo) {
         return systemInfo.getHardware().getNetworkIFs().stream()
                 .filter(net -> net.isKnownVmMacAddr() == false)  // исключаем виртуальные
                 .filter(net -> net.getIPv4addr().length > 0)

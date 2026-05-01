@@ -2,8 +2,8 @@ package github.titandea.utils;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import oshi.software.os.OperatingSystem;
 import oshi.SystemInfo;
+import oshi.software.os.OperatingSystem;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

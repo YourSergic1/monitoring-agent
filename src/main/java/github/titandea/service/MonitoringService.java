@@ -40,7 +40,7 @@ public class MonitoringService {
             CentralProcessor processor = systemInfo.getHardware().getProcessor();
             Sensors sensors = systemInfo.getHardware().getSensors();
 
-            CpuMetrics cpu = buildCpuMetrics(processor,sensors,previousCpuTicks);
+            CpuMetrics cpu = buildCpuMetrics(processor, sensors, previousCpuTicks);
             MemoryMetrics memory = buildMemoryMetrics();
             List<DiskMetrics> diskMetrics = buildDiskMetrics();
             List<NetworkMetrics> networkMetrics = buildNetworkMetrics();
