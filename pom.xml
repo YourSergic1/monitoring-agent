@@ -13,7 +13,7 @@
 
     <groupId>github.titandea</groupId>
     <artifactId>monitoring-agent</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <name>monitoring-agent</name>
     <description>Клиент для отправки системных метрик в кафку</description>
 

@@ -1,9 +1,9 @@
 [Setup]
 AppName=MonitoringAgentApplication
-AppVersion=1.1.0
+AppVersion=1.2.0
 DefaultDirName={autopf}\MonitoringAgentApplication
 OutputDir=.\output
-OutputBaseFilename=MonitoringAgentApplication-Setup-v1.1.0
+OutputBaseFilename=MonitoringAgentApplication-Setup-v1.2.0
 PrivilegesRequired=admin
 ArchitecturesInstallIn64BitMode=x64
 ArchitecturesAllowed=x64
@@ -126,14 +126,14 @@ begin
 end;
 
 [Files]
-Source: "monitoring-agent-1.1.0.jar"; DestDir: "{app}"; Flags: ignoreversion
+Source: "monitoring-agent-1.2.0.jar"; DestDir: "{app}"; Flags: ignoreversion
 Source: "nssm.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "jre\*"; DestDir: "{app}\jre"; Flags: recursesubdirs ignoreversion
 
 [Run]
 Filename: "{app}\nssm.exe"; Parameters: "install MonitoringAgentApp ""{app}\jre\bin\java.exe"""; Flags: runhidden
 Filename: "{app}\nssm.exe"; Parameters: "set MonitoringAgentApp AppDirectory ""{app}"""; Flags: runhidden
-Filename: "{app}\nssm.exe"; Parameters: "set MonitoringAgentApp AppParameters ""-DORGANIZATION={code:GetOrg} -DKAFKA_BOOTSTRAP_SERVERS={code:GetKafkaServer} -DKAFKA_METRICS_TOPIC={code:GetKafkaMetricsTopic} -DKAFKA_INIT_TOPIC={code:GetKafkaInitTopic} -DCOLLECTION_INTERVAL_MS={code:GetInterval} -DCONTINUOUS={code:GetContinuous} -DSTART_TIME={code:GetStartTime} -DEND_TIME={code:GetEndTime} -jar """"{app}\monitoring-agent-1.1.0.jar"""""""; Flags: runhidden
+Filename: "{app}\nssm.exe"; Parameters: "set MonitoringAgentApp AppParameters ""-DORGANIZATION={code:GetOrg} -DKAFKA_BOOTSTRAP_SERVERS={code:GetKafkaServer} -DKAFKA_METRICS_TOPIC={code:GetKafkaMetricsTopic} -DKAFKA_INIT_TOPIC={code:GetKafkaInitTopic} -DCOLLECTION_INTERVAL_MS={code:GetInterval} -DCONTINUOUS={code:GetContinuous} -DSTART_TIME={code:GetStartTime} -DEND_TIME={code:GetEndTime} -jar """"{app}\monitoring-agent-1.2.0.jar"""""""; Flags: runhidden
 Filename: "{app}\nssm.exe"; Parameters: "set MonitoringAgentApp Start SERVICE_AUTO_START"; Flags: runhidden
 Filename: "{app}\nssm.exe"; Parameters: "set MonitoringAgentApp AppRestartDelay 5000"; Flags: runhidden
 Filename: "{app}\nssm.exe"; Parameters: "start MonitoringAgentApp"; Flags: runhidden
