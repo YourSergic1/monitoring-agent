@@ -19,7 +19,7 @@ public class StartupInitPublisher {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("${agent.kafka-init-topic}")
+    @Value("${spring.kafka.init-topic}")
     private String kafkaInitTopic;
 
     @EventListener(ApplicationReadyEvent.class)
