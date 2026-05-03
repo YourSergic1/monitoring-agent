@@ -19,7 +19,7 @@ public class MetricsScheduler {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("${agent.kafka-metrics-topic}")
+    @Value("${spring.kafka.metrics-topic}")
     private String kafkaMetricsTopic;
 
     @Scheduled(fixedDelayString = "${agent.collection-interval-ms}")

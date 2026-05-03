@@ -9,10 +9,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import oshi.SystemInfo;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class InitService {
+    @Value("${agent.organization}")
+    private String organization;
+
     @Value("${agent.time.start}")
     private String agentTimeStart;
 
@@ -27,6 +32,7 @@ public class InitService {
     public InitInfo collectInitInfo() {
         InitInfo initInfo = InitInfo.builder()
                 .localIp(IpUtils.getLocalIp(systemInfo))
+                .organization(UUID.fromString(organization))
                 .build();
         if (continuous) {
             initInfo.setContinuous(continuous);

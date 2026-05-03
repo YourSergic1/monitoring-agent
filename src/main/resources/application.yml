@@ -4,6 +4,8 @@ server:
 spring:
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    metrics-topic: ${KAFKA_METRICS_TOPIC}
+    init-topic: ${KAFKA_INIT_TOPIC}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -14,7 +16,6 @@ spring:
 
 agent:
   organization: ${ORGANIZATION}
-  kafka-metrics-topic: ${KAFKA_METRICS_TOPIC}
   kafka-init-topic: ${KAFKA_INIT_TOPIC}
   collection-interval-ms: ${COLLECTION_INTERVAL_MS}
   time:

@@ -17,8 +17,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SystemMetrics {
 
-    private String agentOrganization;
-
     private String hostname;
 
     private String localIp;

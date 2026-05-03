@@ -51,7 +51,7 @@ var
 begin
   OriginalFormHeight := WizardForm.ClientHeight;
   ConfigPage := CreateInputQueryPage(wpWelcome, 'Настройки подключения', 'Введите параметры для работы агента', 'Значения будут переданы сервису при запуске');
-  ConfigPage.Add('Организация (на английском):', False);
+  ConfigPage.Add('Идентификатор организации (уточните у оператора):', False);
   ConfigPage.Add('Сервер кафка (уточните у оператора):', False);
   ConfigPage.Add('Топик кафка для метрик (уточните у оператора):', False);
   ConfigPage.Add('Топик кафка для инициализации (уточните у оператора):', False);

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -14,6 +15,8 @@ import java.time.LocalTime;
 public class InitInfo {
 
     private String localIp;
+
+    private UUID organization;
 
     private Boolean continuous;
 

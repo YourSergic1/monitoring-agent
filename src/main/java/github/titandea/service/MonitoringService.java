@@ -21,15 +21,11 @@ public class MonitoringService {
     private final SystemInfo systemInfo = new SystemInfo();
     private long[] previousCpuTicks = new long[8];
 
-    @Value("${agent.organization}")
-    private String agentOrganization;
-
     @PostConstruct
     public void init() {
         try {
             previousCpuTicks = systemInfo.getHardware().getProcessor().getSystemCpuLoadTicks();
-            log.info("MonitoringService инициализирован. Организация: {}",
-                    agentOrganization);
+            log.info("MonitoringService инициализирован.");
         } catch (Exception e) {
             log.error("Ошибка при инициализации MonitoringService: {}", e.getMessage(), e);
         }
@@ -46,7 +42,6 @@ public class MonitoringService {
             List<NetworkMetrics> networkMetrics = buildNetworkMetrics();
 
             return SystemMetrics.builder()
-                    .agentOrganization(agentOrganization)
                     .hostname(SystemUtils.getHostname())
                     .localIp(IpUtils.getLocalIp(systemInfo))
                     .publicIp(IpUtils.getPublicIp())
